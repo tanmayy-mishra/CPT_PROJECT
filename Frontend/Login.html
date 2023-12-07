@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="email"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        input[type="submit"] {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #FF69B4;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <form id="loginForm">
+            <input type="text" id="username" name="username" placeholder="Username" required><br>
+            <input type="email" id="email" name="email" placeholder="Email" required><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById('loginForm').onsubmit = function(e) {
+            e.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+
+            axios.post('http://localhost:3334/insertdata', {
+                name: username,
+                email: email
+            })
+            .then(function (response) {
+                console.log('Success:', response.data);
+                alert('Login Successful!');
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+                alert('An error occurred!');
+            });
+        }
+    </script>
+</body>
+</html>

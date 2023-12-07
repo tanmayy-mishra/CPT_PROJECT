@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  frontend:
+    image: tanmayymishra/tanmaycpt:front.2
+    ports:
+      - "80:80"
+
+  backend:
+    image: tanmayymishra/tanmaycpt:back.2
+    ports:
+      - "3334:3334"
+    restart : on-failure
